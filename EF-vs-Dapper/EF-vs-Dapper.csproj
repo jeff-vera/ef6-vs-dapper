@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DapperDriver.cs" />
+    <Compile Include="Dapper\TransactionHistory.cs" />
     <Compile Include="EFDriver.cs" />
     <Compile Include="EF\AWContext.cs" />
     <Compile Include="EF\TransactionHistory.cs" />

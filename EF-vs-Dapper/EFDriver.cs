@@ -8,14 +8,27 @@ namespace EF_vs_Dapper
 {
     public class EFDriver
     {
+        private AWContext _context;
+
+        public EFDriver()
+        {
+            _context = new AWContext();
+            Database.SetInitializer<AWContext>(null);
+        }
         public IEnumerable<TransactionHistory> GetLotsOfRecords()
         {
-            var context = new AWContext();
-            Database.SetInitializer<AWContext>(null);
-
-            var data = from x in context.TransactionHistory
+            var data = from x in _context.TransactionHistory
                         select x;
 
+            return data;
+        }
+
+
+        public IEnumerable<TransactionHistory> GetAFewRecords()
+        {
+            var data = from x in _context.TransactionHistory
+                       where x.Quantity > 1000
+                       select x;
             return data;
         }
     }
