@@ -14,7 +14,7 @@ namespace EF_vs_Dapper_Tests
         [Test]
         public void Can_get_lots_of_records_with_new_instantiation_every_time_test()
         {
-            var times = new List<long>();
+            var times = new List<double>();
 
             for (int i = 0; i < 40; ++i)
             {
@@ -37,13 +37,20 @@ namespace EF_vs_Dapper_Tests
                 times.Average(),
                 times.Min(),
                 times.Max());
+
+            var timesSansMinAndMax = new List<double>();
+            timesSansMinAndMax.AddRange(times);
+            timesSansMinAndMax.Remove(timesSansMinAndMax.Min());
+            timesSansMinAndMax.Remove(timesSansMinAndMax.Max());
+            Console.WriteLine("average sans min & max: {0}",
+                timesSansMinAndMax.Average());
         }
 
         [Test]
         public void Can_get_lots_of_records_with_same_object_test()
         {
             var dapperDriver = new DapperDriver();
-            var times = new List<long>();
+            var times = new List<double>();
 
             for (int i = 0; i < 40; ++i)
             {
@@ -65,15 +72,22 @@ namespace EF_vs_Dapper_Tests
                 times.Average(),
                 times.Min(),
                 times.Max());
+
+            var timesSansMinAndMax = new List<double>();
+            timesSansMinAndMax.AddRange(times);
+            timesSansMinAndMax.Remove(timesSansMinAndMax.Min());
+            timesSansMinAndMax.Remove(timesSansMinAndMax.Max());
+            Console.WriteLine("average sans min & max: {0}",
+                timesSansMinAndMax.Average());
         }
 
         [Test]
         public void Can_get_few_records_test()
         {
             var dapperDriver = new DapperDriver();
-            var times = new List<long>();
+            var times = new List<double>();
 
-            for (int i = 0; i < 40; ++i)
+            for (int i = 0; i < 100; ++i)
             {
                 var sw = Stopwatch.StartNew();
                 var rows = dapperDriver.GetAFewRecords<TransactionHistory>();
@@ -94,6 +108,12 @@ namespace EF_vs_Dapper_Tests
                 times.Min(),
                 times.Max());
 
+            var timesSansMinAndMax = new List<double>();
+            timesSansMinAndMax.AddRange(times);
+            timesSansMinAndMax.Remove(timesSansMinAndMax.Min());
+            timesSansMinAndMax.Remove(timesSansMinAndMax.Max());
+            Console.WriteLine("average sans min & max: {0}",
+                timesSansMinAndMax.Average());
         }
     }
 }
