@@ -54,7 +54,7 @@ namespace EF_vs_Dapper_Tests
                 sw.Stop();
 
                 times.Add(sw.ElapsedMilliseconds);
-                Console.WriteLine("took {0} to get {1} records",
+                Console.WriteLine("took {0} ms to get {1} records",
                     sw.ElapsedMilliseconds,
                     rows.Count());
             }
@@ -81,7 +81,7 @@ namespace EF_vs_Dapper_Tests
                 sw.Stop();
 
                 times.Add(sw.ElapsedMilliseconds);
-                Console.WriteLine("took {0} to get {1} records",
+                Console.WriteLine("took {0} ms to get {1} records",
                     sw.ElapsedMilliseconds,
                     rows.Count());
             }
