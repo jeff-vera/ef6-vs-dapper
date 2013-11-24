@@ -20,7 +20,7 @@ namespace EF_vs_Dapper
             var data = from x in _context.TransactionHistory
                         select x;
 
-            return data;
+            return data.ToList();
         }
 
 
