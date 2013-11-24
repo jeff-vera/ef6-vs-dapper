@@ -29,7 +29,8 @@ namespace EF_vs_Dapper
             var data = from x in _context.TransactionHistory
                        where x.Quantity > 1000
                        select x;
-            return data;
+         
+            return data.ToList();
         }
     }
 }
